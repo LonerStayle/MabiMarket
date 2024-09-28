@@ -60,7 +60,7 @@ fun MabiMarketTheme(
     content: @Composable () -> Unit
 
 ) {
-    val statusBarHeight = WindowInsets.statusBars.getTop(LocalDensity.current).dp
+
     val context = LocalContext.current
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {

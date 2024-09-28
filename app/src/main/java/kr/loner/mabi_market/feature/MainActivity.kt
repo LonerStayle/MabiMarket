@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable(MainNavigator.SearchMain.name){
-                        SearchMainScreen()
+                        SearchMainScreen(viewModel)
                     }
                 }
             }

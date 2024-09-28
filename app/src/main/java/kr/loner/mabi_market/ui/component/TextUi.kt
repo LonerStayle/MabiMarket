@@ -14,7 +14,7 @@ import kr.loner.mabi_market.ui.theme.GRAY01
 
 
 @Composable
-fun ServerSelectText(isSelect:Boolean, text:String, modifier:Modifier = Modifier) {
+fun SelectText(isSelect:Boolean, text:String, modifier:Modifier = Modifier) {
     Box(modifier = modifier) {
         Text(
             text = text,
@@ -26,7 +26,6 @@ fun ServerSelectText(isSelect:Boolean, text:String, modifier:Modifier = Modifier
                     width = 5f,
                     join = StrokeJoin.Miter,
                 ),
-
             )
         )
 

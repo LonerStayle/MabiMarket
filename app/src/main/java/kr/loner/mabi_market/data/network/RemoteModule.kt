@@ -1,5 +1,6 @@
 package kr.loner.mabi_market.data.network
 
+import kr.loner.mabi_market.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,8 +22,7 @@ object RemoteModule {
 
 
     private fun getHeaderInterceptor() = Interceptor { chain ->
-        val newRequest = chain.request().newBuilder()
-            .build()
+        val newRequest = chain.request().newBuilder().build()
         chain.proceed(newRequest)
     }
 
