@@ -98,7 +98,9 @@ fun MabiMarketTheme(
                         modifier = Modifier.fillMaxSize()
                     )
                     val paddingValues = WindowInsets.systemBars.asPaddingValues()
-                    Column(modifier = Modifier.padding(top = paddingValues.calculateTopPadding())) {
+                    Column(modifier = Modifier.padding(
+                        top = paddingValues.calculateTopPadding(),
+                        bottom = paddingValues.calculateBottomPadding())) {
                         content()
                     }
                 }

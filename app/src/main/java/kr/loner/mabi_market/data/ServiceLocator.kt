@@ -12,5 +12,5 @@ object ServiceLocator {
         mabinogiApi = it
     }
 
-    fun getDataStore(context: Context) = AppDataStore(context)
+    fun getDataStore(context: Context) = AppDataStore.getInstance(context)
 }

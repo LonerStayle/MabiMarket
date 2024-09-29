@@ -6,7 +6,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +18,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,38 +27,53 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kr.loner.mabi_market.R
 import kr.loner.mabi_market.ui.theme.BLUE03
 import kr.loner.mabi_market.ui.theme.BLUE05
 
-
 @Composable
 fun SearchBar(
     text: String,
     modifier: Modifier = Modifier,
+    focusRequester: FocusRequester = FocusRequester.Default,
+    onBackClick: () -> Unit,
     onTextChange: (String) -> Unit,
     onSearchClick: () -> Unit
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current // 키보드 컨트롤러 생성
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp),
+            .padding(start = 20.dp, end = 20.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_menu),
+            painter = painterResource(id = R.drawable.ic_back),
             contentDescription = "Search Menu",
             modifier = Modifier
-                .height(32.dp)
-                .width(32.dp)
+                .height(19.dp)
+                .width(25.dp)
+                .clickable(
+                    onClick = onBackClick,
+                    indication = rememberRipple(
+                        bounded = true,
+                        color = BLUE05
+                    ),
+                    interactionSource = remember { MutableInteractionSource() }
+                )
         )
-        Spacer(modifier = Modifier.width(20.dp))
+
+        Spacer(modifier = Modifier.width(27.dp))
 
         Row(
             modifier = Modifier
@@ -71,8 +87,20 @@ fun SearchBar(
             BasicTextField(
                 value = text,
                 onValueChange = onTextChange,
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .focusRequester(focusRequester),
                 textStyle = MaterialTheme.typography.bodyLarge.copy(color = BLUE05),
+                maxLines = 1, // 한 줄만 허용
+                keyboardOptions = KeyboardOptions.Default.copy(
+                    imeAction = ImeAction.Done,
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        keyboardController?.hide()
+                        onSearchClick()
+                    }
+                ),
                 decorationBox = { innerTextField ->
                     Box(
                         modifier = Modifier.fillMaxWidth(),
@@ -98,8 +126,7 @@ fun SearchBar(
                 contentDescription = "Search",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .height(16.dp)
-                    .width(16.dp)
+                    .size(16.dp)
                     .clickable(
                         onClick = onSearchClick,
                         indication = rememberRipple(
@@ -114,7 +141,7 @@ fun SearchBar(
 }
 
 @Composable
-fun SearchFilterToggle(isSelect: Boolean, text: String,onToggleClick:()->Unit) {
+fun SearchFilterToggle(isSelect: Boolean, text: String, onToggleClick: () -> Unit) {
     Box(
         modifier = if (!isSelect) {
             Modifier
@@ -213,3 +240,5 @@ fun SearchFilterBox(selectText: String, filters: List<String>, onSelectFilter: (
         }
     }
 }
+
+
