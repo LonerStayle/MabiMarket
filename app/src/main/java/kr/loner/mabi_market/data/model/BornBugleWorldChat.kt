@@ -1,9 +1,9 @@
-package kr.loner.mabi_market.data.network.dto
+package kr.loner.mabi_market.data.model
 
 import com.google.gson.annotations.SerializedName
 import java.time.ZonedDateTime
 
-data class BornBugleWorldHistoryRes(
+data class BornBugleWorldChat(
     @SerializedName("character_name")
     val characterName:String,
 

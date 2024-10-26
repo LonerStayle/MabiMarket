@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "58959327663",
+    "project_id": "mabi-market",
+    "storage_bucket": "mabi-market.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58959327663:android:0f71eac539d1dcabeeff5a",
+        "android_client_info": {
+          "package_name": "kr.loner.mabi_market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58959327663-p0b4rvf44su6iqcetna1o8chshnokuba.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.loner.mabi_market",
+            "certificate_hash": "e7b5d83cbe4686701e7c1dec6d310da5f2d79204"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfjNSVCAxAPw3v559kGvgB4mdkIFFptA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

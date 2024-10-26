@@ -1,4 +1,4 @@
-package kr.loner.mabi_market.feature.my_like
+package kr.loner.mabi_market.feature.legacy.my_like
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

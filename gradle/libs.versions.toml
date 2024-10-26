@@ -15,6 +15,11 @@ okhttp3Logging = "4.12.0"
 dataStore = "1.1.1"
 coil = "2.7.0"
 kotlinSerialization = "2.0.0"
+googleService = "4.4.2"
+firebaseBom = "33.5.1"
+firebaseMessagingKtx = "24.0.3"
+firebaseFirestoreKtx = "25.1.1"
+googleGmsService = "20.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,11 +45,16 @@ okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okht
 okhttp3-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3Logging" }
 
 datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "dataStore" }
-coil = {group="io.coil-kt",name ="coil-compose",version.ref ="coil"}
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+firebaseBom = {group = "com.google.firebase",name="firebase-bom", version.ref = "firebaseBom"}
+firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+google-play-serviceGms = {group = "com.google.android.gms",name = "play-services-auth",version.ref ="googleGmsService" }
 
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization"}
-
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialization" }
+googleServices = { id = "com.google.gms.google-services", version.ref = "googleService" }

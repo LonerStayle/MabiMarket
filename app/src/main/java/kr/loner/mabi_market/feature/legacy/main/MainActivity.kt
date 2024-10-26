@@ -1,4 +1,4 @@
-package kr.loner.mabi_market.feature.main
+package kr.loner.mabi_market.feature.legacy.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,9 +10,9 @@ import androidx.compose.animation.fadeOut
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import kr.loner.mabi_market.ui.screen.SearchFilterScreen
-import kr.loner.mabi_market.ui.screen.SearchMainScreen
-import kr.loner.mabi_market.ui.screen.SearchScreen
+import kr.loner.mabi_market.ui.screen.legacy.SearchFilterScreen
+import kr.loner.mabi_market.ui.screen.legacy.SearchMainScreen
+import kr.loner.mabi_market.ui.screen.legacy.SearchScreen
 import kr.loner.mabi_market.ui.screen.SplashScreen
 import kr.loner.mabi_market.ui.theme.MabiMarketTheme
 

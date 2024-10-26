@@ -1,4 +1,4 @@
-package kr.loner.mabi_market.feature.my_like
+package kr.loner.mabi_market.feature.legacy.my_like
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kr.loner.mabi_market.data.Item
-import kr.loner.mabi_market.data.ServerType
-import kr.loner.mabi_market.data.local.AppDataStore
+import kr.loner.mabi_market.data.legacy.Item
+import kr.loner.mabi_market.data.model.ServerType
+import kr.loner.mabi_market.data.local.legacy.AppDataStore
 
 class MyLikeViewModel(
     private val appDataStore: AppDataStore,

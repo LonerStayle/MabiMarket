@@ -1,4 +1,4 @@
-package kr.loner.mabi_market.ui.screen
+package kr.loner.mabi_market.ui.screen.legacy
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -43,7 +43,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kr.loner.mabi_market.R
-import kr.loner.mabi_market.feature.main.MainViewModel
+import kr.loner.mabi_market.feature.legacy.main.MainViewModel
 import kr.loner.mabi_market.ui.component.SearchBar
 import kr.loner.mabi_market.ui.theme.BLUE03
 import kr.loner.mabi_market.ui.theme.BLUE05

@@ -1,4 +1,4 @@
-package kr.loner.mabi_market.feature.main
+package kr.loner.mabi_market.feature.legacy.main
 
 enum class MainNavigator {
     Splash,

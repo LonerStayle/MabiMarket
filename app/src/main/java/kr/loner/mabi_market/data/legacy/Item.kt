@@ -1,6 +1,7 @@
-package kr.loner.mabi_market.data
+package kr.loner.mabi_market.data.legacy
 
 import kr.loner.mabi_market.R
+import kr.loner.mabi_market.data.model.ServerType
 
 data class Item(
     val id:Long,

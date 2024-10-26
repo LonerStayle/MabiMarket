@@ -1,6 +1,5 @@
-package kr.loner.mabi_market.ui.component
+package kr.loner.mabi_market.ui.component.legacy
 
-import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -31,8 +30,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import kr.loner.mabi_market.R
-import kr.loner.mabi_market.data.Item
-import kr.loner.mabi_market.feature.main.MainViewModel
+import kr.loner.mabi_market.data.legacy.Item
 import kr.loner.mabi_market.ui.theme.BLUE05
 import kr.loner.mabi_market.ui.theme.GRAY02
 import kr.loner.mabi_market.util.koreanFormattedPrice

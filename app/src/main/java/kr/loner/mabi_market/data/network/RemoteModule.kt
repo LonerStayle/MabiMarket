@@ -53,4 +53,20 @@ object RemoteModule {
 
     }
 
+
+    fun getFcmApi(): FcmApi {
+        val client = OkHttpClient.Builder()
+
+            .addInterceptor(getHttpLoggingInterceptor())
+            .build()
+        return Retrofit.Builder()
+//            .baseUrl("https://fcm.googleapis.com/v1/")
+            .baseUrl("https://fcm.googleapis.com/")
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(client)
+            .build()
+            .create()
+
+    }
+
 }

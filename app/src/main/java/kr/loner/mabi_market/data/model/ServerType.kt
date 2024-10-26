@@ -1,4 +1,4 @@
-package kr.loner.mabi_market.data
+package kr.loner.mabi_market.data.model
 
 enum class ServerType(val desc: String) {
     RYUTE("류트"),

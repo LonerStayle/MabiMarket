@@ -1,4 +1,4 @@
-package kr.loner.mabi_market.data.local
+package kr.loner.mabi_market.data.local.legacy
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit
@@ -9,7 +9,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kr.loner.mabi_market.data.Item
+import kr.loner.mabi_market.data.legacy.Item
 
 
 class AppDataStore private constructor(private val context: Context){

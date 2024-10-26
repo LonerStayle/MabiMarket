@@ -1,4 +1,4 @@
-package kr.loner.mabi_market.ui.screen
+package kr.loner.mabi_market.ui.screen.legacy
 
 import android.content.Intent
 import androidx.compose.foundation.Image
@@ -24,12 +24,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import kr.loner.mabi_market.R
-import kr.loner.mabi_market.data.Item
-import kr.loner.mabi_market.data.ServerType
-import kr.loner.mabi_market.feature.main.MainViewModel
-import kr.loner.mabi_market.feature.my_like.MyLikeActivity
-import kr.loner.mabi_market.feature.my_like.MyLikeViewModel
-import kr.loner.mabi_market.ui.component.ItemList
+import kr.loner.mabi_market.data.legacy.Item
+import kr.loner.mabi_market.data.model.ServerType
+import kr.loner.mabi_market.feature.legacy.main.MainViewModel
+import kr.loner.mabi_market.feature.legacy.my_like.MyLikeActivity
+import kr.loner.mabi_market.feature.legacy.my_like.MyLikeViewModel
+import kr.loner.mabi_market.ui.component.legacy.ItemList
 import kr.loner.mabi_market.ui.component.SearchBar
 import kr.loner.mabi_market.ui.component.SearchFilterBox
 import kr.loner.mabi_market.ui.component.SearchFilterToggle

@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.googleServices)
 }
 
 val prop = Properties().apply {
@@ -77,6 +78,10 @@ dependencies {
     implementation(libs.okhttp3.logging)
     implementation(libs.datastore)
     implementation(libs.coil)
+    implementation(platform(libs.firebaseBom))
+    implementation(libs.firebase.messaging.ktx)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.google.play.serviceGms)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

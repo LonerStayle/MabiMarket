@@ -1,4 +1,4 @@
-package kr.loner.mabi_market.feature.main
+package kr.loner.mabi_market.feature.legacy.main
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kr.loner.mabi_market.data.Item
-import kr.loner.mabi_market.data.ServerType
-import kr.loner.mabi_market.data.local.AppDataStore
+import kr.loner.mabi_market.data.legacy.Item
+import kr.loner.mabi_market.data.model.ServerType
+import kr.loner.mabi_market.data.local.legacy.AppDataStore
 import kr.loner.mabi_market.data.network.MabinogiApi
 import kr.loner.mabi_market.util.formattedDate
 
