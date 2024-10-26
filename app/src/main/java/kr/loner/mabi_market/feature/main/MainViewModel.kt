@@ -1,5 +1,6 @@
 package kr.loner.mabi_market.feature.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,9 +11,10 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kr.loner.mabi_market.data.Item
-import kr.loner.mabi_market.data.ItemServerType
+import kr.loner.mabi_market.data.ServerType
 import kr.loner.mabi_market.data.local.AppDataStore
 import kr.loner.mabi_market.data.network.MabinogiApi
+import kr.loner.mabi_market.util.formattedDate
 
 class MainViewModel(
     private val mabinogiApi: MabinogiApi,
@@ -39,8 +41,17 @@ class MainViewModel(
         )
 
     val searchRecords = appDataStore.searchRecordsFlow.stateIn(
-            viewModelScope, SharingStarted.Eagerly, emptyList()
-        )
+        viewModelScope, SharingStarted.Eagerly, emptyList()
+    )
+
+    init {
+        viewModelScope.launch {
+            val historyGroupRes = mabinogiApi.getBornBugleWorldHistories(ServerType.RYUTE.desc)
+            Log.d("checkk", historyGroupRes.toString())
+            Log.d("checkk00", historyGroupRes.hornBugleWorldHistory[0].dateSend.formattedDate)
+        }
+
+    }
 
     fun setSearchText(newText: String) {
         _uiState.update { it.copy(searchText = newText) }
@@ -61,10 +72,10 @@ class MainViewModel(
 
     fun setSelectServer(server: String, onShowToast: () -> Unit) {
         val serverType = when (server) {
-            ItemServerType.RYUTE.desc -> ItemServerType.RYUTE
-            ItemServerType.MANDOLIN.desc -> ItemServerType.MANDOLIN
-            ItemServerType.HARF.desc -> ItemServerType.HARF
-            else -> ItemServerType.WOLF
+            ServerType.RYUTE.desc -> ServerType.RYUTE
+            ServerType.MANDOLIN.desc -> ServerType.MANDOLIN
+            ServerType.HARF.desc -> ServerType.HARF
+            else -> ServerType.WOLF
         }
         _uiState.update { it.copy(selectServer = serverType) }
     }
@@ -111,11 +122,11 @@ class MainViewModel(
         )
     }
 
-    fun setFilterText(text:String){
+    fun setFilterText(text: String) {
         _uiState.update { it.copy(searchFilterText = text) }
     }
 
-    fun setSearchRecord(searchText:String) = viewModelScope.launch{
+    fun setSearchRecord(searchText: String) = viewModelScope.launch {
         val records = searchRecords.value
         val find = records.find { it == searchText }
         appDataStore.saveSearchRecordsFlow(
@@ -129,11 +140,11 @@ class MainViewModel(
 
     data class MainUiState(
         val searchText: String = "",
-        val searchCompletedTextOrHint:String = "",
+        val searchCompletedTextOrHint: String = "",
 
         val searchFilterText: String = "",
 
-        val selectServer: ItemServerType = ItemServerType.RYUTE,
+        val selectServer: ServerType = ServerType.RYUTE,
         val selectTime: SelectTimeType? = null,
         val selectPriceOrder: SelectPriceType? = null,
 

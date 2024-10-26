@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kr.loner.mabi_market.data.Item
-import kr.loner.mabi_market.data.ItemServerType
+import kr.loner.mabi_market.data.ServerType
 import kr.loner.mabi_market.data.local.AppDataStore
 
 class MyLikeViewModel(
@@ -109,10 +109,10 @@ class MyLikeViewModel(
     }
     fun setSelectServer(server: String) {
         val serverType = when (server) {
-            ItemServerType.RYUTE.desc -> ItemServerType.RYUTE
-            ItemServerType.MANDOLIN.desc -> ItemServerType.MANDOLIN
-            ItemServerType.HARF.desc -> ItemServerType.HARF
-            else -> ItemServerType.WOLF
+            ServerType.RYUTE.desc -> ServerType.RYUTE
+            ServerType.MANDOLIN.desc -> ServerType.MANDOLIN
+            ServerType.HARF.desc -> ServerType.HARF
+            else -> ServerType.WOLF
         }
         _uiState.update { it.copy(selectServer = serverType) }
     }
@@ -160,7 +160,7 @@ class MyLikeViewModel(
     data class MyLikeUiState(
         val searchText: String = "",
 
-        val selectServer: ItemServerType = ItemServerType.RYUTE,
+        val selectServer: ServerType = ServerType.RYUTE,
         val selectTime: SelectTimeType? = null,
         val selectPriceOrder: SelectPriceType? = null,
 

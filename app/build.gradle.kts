@@ -1,8 +1,15 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
+val prop = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "local.properties")))
+}
 android {
     namespace = "kr.loner.mabi_market"
     compileSdk = 34
@@ -15,6 +22,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", prop.getProperty("MABINOGI_KEY"))
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -50,6 +58,8 @@ android {
     }
 }
 
+
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -73,6 +83,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }

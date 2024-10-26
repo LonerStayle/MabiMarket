@@ -1,7 +1,6 @@
 package kr.loner.mabi_market.ui.screen
 
 import android.content.Intent
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import kr.loner.mabi_market.R
 import kr.loner.mabi_market.data.Item
-import kr.loner.mabi_market.data.ItemServerType
+import kr.loner.mabi_market.data.ServerType
 import kr.loner.mabi_market.feature.main.MainViewModel
 import kr.loner.mabi_market.feature.my_like.MyLikeActivity
 import kr.loner.mabi_market.feature.my_like.MyLikeViewModel
@@ -110,10 +109,10 @@ private fun SearchFilter(
                 SearchFilterBox(
                     uiState.selectServer.desc,
                     listOf(
-                        ItemServerType.RYUTE.desc,
-                        ItemServerType.MANDOLIN.desc,
-                        ItemServerType.HARF.desc,
-                        ItemServerType.WOLF.desc
+                        ServerType.RYUTE.desc,
+                        ServerType.MANDOLIN.desc,
+                        ServerType.HARF.desc,
+                        ServerType.WOLF.desc
                     )
                 ) {
                     myLikeViewModel.setSelectServer(it)

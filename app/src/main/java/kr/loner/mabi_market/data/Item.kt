@@ -11,7 +11,7 @@ data class Item(
     val allPrice:Long,
     val count:Int,
     val registerTimeStamp:Long,
-    val serverType: ItemServerType = ItemServerType.RYUTE,
+    val serverType: ServerType = ServerType.RYUTE,
     val myLike:Boolean = false
 ){
 
@@ -148,7 +148,7 @@ data class Item(
                 allPrice = 4000,
                 count = 1,
                 registerTimeStamp = System.currentTimeMillis() - thirtyMin,
-                serverType = ItemServerType.MANDOLIN,
+                serverType = ServerType.MANDOLIN,
                 myLike = false
             ),
 
@@ -160,7 +160,7 @@ data class Item(
                 price = 3000,
                 allPrice = 3000,
                 count = 1,
-                serverType = ItemServerType.HARF,
+                serverType = ServerType.HARF,
                 registerTimeStamp = System.currentTimeMillis() - thirtyMin,
                 myLike = false
             ),
@@ -172,7 +172,7 @@ data class Item(
                 price = 900,
                 allPrice = 4800,
                 count = 8,
-                serverType = ItemServerType.WOLF,
+                serverType = ServerType.WOLF,
                 registerTimeStamp = System.currentTimeMillis(),
                 myLike = false
             ),

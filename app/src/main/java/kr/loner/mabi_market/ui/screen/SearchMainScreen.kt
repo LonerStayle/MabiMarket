@@ -1,6 +1,5 @@
 package kr.loner.mabi_market.ui.screen
 
-import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -19,8 +18,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Divider
@@ -39,11 +36,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kr.loner.mabi_market.R
 import kr.loner.mabi_market.data.Item
-import kr.loner.mabi_market.data.ItemServerType
+import kr.loner.mabi_market.data.ServerType
 import kr.loner.mabi_market.feature.main.MainViewModel
 import kr.loner.mabi_market.feature.my_like.MyLikeActivity
 import kr.loner.mabi_market.ui.component.ItemList
-import kr.loner.mabi_market.ui.component.ListItem
 import kr.loner.mabi_market.ui.component.SearchFilterBox
 import kr.loner.mabi_market.ui.component.SearchFilterToggle
 import kr.loner.mabi_market.ui.theme.BLUE03
@@ -52,6 +48,8 @@ import kr.loner.mabi_market.ui.theme.BLUE05
 @Composable
 fun SearchMainScreen(mainViewModel: MainViewModel, openFilter: () -> Unit, openSearch: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
+
+
         val uiState = mainViewModel.uiState.collectAsState().value
         val context = LocalContext.current
         val searchList = mainViewModel.searchItemList.collectAsState().value
@@ -128,10 +126,10 @@ private fun SearchFilter(
                 SearchFilterBox(
                     uiState.selectServer.desc,
                     listOf(
-                        ItemServerType.RYUTE.desc,
-                        ItemServerType.MANDOLIN.desc,
-                        ItemServerType.HARF.desc,
-                        ItemServerType.WOLF.desc
+                        ServerType.RYUTE.desc,
+                        ServerType.MANDOLIN.desc,
+                        ServerType.HARF.desc,
+                        ServerType.WOLF.desc
                     )
                 ) {
                     mainViewModel.setSelectServer(it) {
