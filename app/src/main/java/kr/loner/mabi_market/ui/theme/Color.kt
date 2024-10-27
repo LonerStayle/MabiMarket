@@ -15,4 +15,8 @@ val GRAY02 = Color(0xFF595959)
 val YELLOW01 = Color(0xFFFF7A00)
 val RED01 = Color(0xFFFF2400)
 
+val GRAY333 = Color(0xFF333333)
+val GRAY666 = Color(0xFF666666)
+val GRAY999 = Color(0xFF999999)
+
 fun Color.toAGColor() = toArgb().run { android.graphics.Color.argb(alpha, red, green, blue) }

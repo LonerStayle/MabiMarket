@@ -14,16 +14,21 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kr.loner.mabi_market.R
 import kr.loner.mabi_market.data.ServiceLocator
-import kr.loner.mabi_market.data.model.ServerType
+import kr.loner.mabi_market.data.model.MabiUser
+import kr.loner.mabi_market.data.network.FcmApi
+import kr.loner.mabi_market.data.network.FirebaseCollection
 
 class AdminService : Service() {
     private val CHANNEL_ID = "my_foreground_service_channel"
 
     private val mabinogiApi = ServiceLocator.getMabinogiApi()
+    private val fcmApi = ServiceLocator.getFcmApi()
     private val dataStore by lazy { ServiceLocator.getNewDataStore(this) }
+    private val userDb by lazy { ServiceLocator.getFireStoreDB(FirebaseCollection.USER) }
 
     private val serviceJob = Job() // Job 관리
     private val serviceScope = CoroutineScope(Dispatchers.Default + serviceJob) // CoroutineScope 설정
+
 
     override fun onCreate() {
         super.onCreate()
@@ -34,7 +39,7 @@ class AdminService : Service() {
             .setSmallIcon(R.drawable.ic_icon)
             .build()
 
-        startRepeatingTask()
+//        startRepeatingTask()
         startForeground(1, notification)
     }
 
@@ -53,6 +58,8 @@ class AdminService : Service() {
 
 
         val chatLikeList = dataStore.bornWorldChatLikeListFlow.first()
+        val oauth2Token = dataStore.oauth2AccessTokenFlow.first()
+
         val serverList = chatLikeList.map { it.serverType }.distinct()
 
         serverList.forEach {
@@ -61,7 +68,32 @@ class AdminService : Service() {
             chatLikeList.forEach { findKeyword ->
                 historyList.forEach { history ->
                     if (history.message.contains(findKeyword.keyword)) {
-
+                        userDb.whereEqualTo("id", findKeyword.userId)
+                            .limit(1)
+                            .get()
+                            .addOnSuccessListener { docs ->
+                                if (!docs.isEmpty) {
+                                    val document = docs.documents[0]
+                                    val user = document.toObject(MabiUser::class.java)
+                                    CoroutineScope(Dispatchers.Default).launch {
+                                        fcmApi.sendNotification(
+                                            header = "Bearer ${oauth2Token}",
+                                            notification = FcmApi.NotificationRequest(
+                                                FcmApi.Message(
+                                                    token = user?.fcmToken ?: return@launch,
+                                                    notification = FcmApi.NotificationData(
+                                                        title = "testTitle",
+                                                        body = "bodybody"
+                                                    ),
+                                                    data = FcmApi.PayLoadData(
+                                                        data = mapOf("asd" to "asd")
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    }
+                                }
+                            }
                     }
                 }
             }

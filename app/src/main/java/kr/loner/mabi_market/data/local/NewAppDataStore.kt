@@ -2,18 +2,16 @@ package kr.loner.mabi_market.data.local
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kr.loner.mabi_market.data.legacy.Item
 import kr.loner.mabi_market.data.model.BornBugleFIndKeyword
-import kr.loner.mabi_market.data.model.BornBugleWorldChat
-import kr.loner.mabi_market.data.model.MillesianUser
+import kr.loner.mabi_market.data.model.MabiUser
 import kr.loner.mabi_market.data.model.NewItem
 import kr.loner.mabi_market.data.model.ServerType
 
@@ -67,12 +65,8 @@ class NewAppDataStore private constructor(private val context: Context) {
     private val KEY_CUR_SERVER_TYPE = stringPreferencesKey("keyCurServerType")
     val curServerTypeFlow: Flow<ServerType?>
         get() = context.dataStore.data.map { pref ->
-            try {
-                val json = pref[KEY_CUR_SERVER_TYPE]
-                gson.fromJson(json, object : TypeToken<ServerType>() {}.type)
-            } catch (e: Exception) {
-                null
-            }
+            val json = pref[KEY_CUR_SERVER_TYPE]
+            gson.fromJson(json, object : TypeToken<ServerType>() {}.type)
         }
 
     suspend fun saveCurServerType(serverType: ServerType) {
@@ -83,21 +77,29 @@ class NewAppDataStore private constructor(private val context: Context) {
     }
 
 
-    private val KEY_MILLESIAN_USER = stringPreferencesKey("keyMillesianUser")
-    val curUserFlow: Flow<MillesianUser?>
+    private val KEY_MABI_USER = stringPreferencesKey("keyMabiUser")
+    val curUserFlow: Flow<MabiUser?>
         get() = context.dataStore.data.map { pref ->
-            try {
-                val json = pref[KEY_MILLESIAN_USER]
-                gson.fromJson(json, object : TypeToken<MillesianUser>() {}.type)
-            } catch (e: Exception) {
-                null
-            }
+            val json = pref[KEY_MABI_USER]
+            gson.fromJson(json, object : TypeToken<MabiUser>() {}.type)
         }
 
-    suspend fun saveCurUser(serverType: MillesianUser) {
-        val json = gson.toJson(serverType)
+    suspend fun saveCurUser(user: MabiUser) {
+        val json = gson.toJson(user)
         context.dataStore.edit { pref ->
-            pref[KEY_MILLESIAN_USER] = json
+            pref[KEY_MABI_USER] = json
+        }
+    }
+
+    private val KEY_OAUTH2_ACCESS_TOKEN = stringPreferencesKey("keyOauth2AccessToken")
+    val oauth2AccessTokenFlow: Flow<String>
+        get() = context.dataStore.data.map { pref ->
+            pref[KEY_OAUTH2_ACCESS_TOKEN] ?: ""
+        }
+
+    suspend fun saveOauth2AccessToken(oauth2AccessToken: String) {
+        context.dataStore.edit { pref ->
+            pref[KEY_OAUTH2_ACCESS_TOKEN] = oauth2AccessToken
         }
     }
 

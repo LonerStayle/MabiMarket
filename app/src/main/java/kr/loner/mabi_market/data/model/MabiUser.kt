@@ -1,6 +1,6 @@
 package kr.loner.mabi_market.data.model
 
-data class MillesianUser(
+data class MabiUser(
     val id:String,
     val fcmToken:String
 )

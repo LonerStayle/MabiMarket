@@ -29,15 +29,8 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController = navController,
-                    startDestination = MainNavigator.Splash.name,
+                    startDestination = MainNavigator.SearchMain.name,
                 ){
-                    composable(MainNavigator.Splash.name){
-                        SplashScreen{
-                            navController.navigate(MainNavigator.SearchMain.name){
-                                popUpTo(MainNavigator.Splash.name) { inclusive = true }
-                            }
-                        }
-                    }
 
                     composable(
                         MainNavigator.SearchMain.name,

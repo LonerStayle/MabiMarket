@@ -44,14 +44,6 @@ class MainViewModel(
         viewModelScope, SharingStarted.Eagerly, emptyList()
     )
 
-    init {
-        viewModelScope.launch {
-            val historyGroupRes = mabinogiApi.getBornBugleWorldHistories(ServerType.RYUTE.desc)
-            Log.d("checkk", historyGroupRes.toString())
-            Log.d("checkk00", historyGroupRes.hornBugleWorldHistory[0].dateSend.formattedDate)
-        }
-
-    }
 
     fun setSearchText(newText: String) {
         _uiState.update { it.copy(searchText = newText) }
